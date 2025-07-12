@@ -1,0 +1,50 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# IDEs
+/.idea/
+*.iml
+*.ipr
+*.iws
+*.log
+*.swp
+*.swo
+*.DS_Store
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+
+# Others
+out/
+
+# Eclipse
+*.classpath
+*.project
+*.settings/
+
+# VS Code
+.vscode/
+
+# Test output
+/test-output/
+
+# Temporary files
+*.tmp
+*.bak
+*.orig
+*.save
+
+# Generated files
+**/generated/
+
