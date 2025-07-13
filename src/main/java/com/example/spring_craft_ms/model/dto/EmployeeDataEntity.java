@@ -15,6 +15,7 @@ import java.util.Date;
 @Table(name = "employee_data", schema = "employee")
 public class EmployeeDataEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "first_name")
     private String firstName;

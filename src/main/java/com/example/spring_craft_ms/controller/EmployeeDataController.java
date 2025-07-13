@@ -5,13 +5,13 @@ import com.example.spring_craft_ms.model.dto.EmployeeDataEntity;
 import com.example.spring_craft_ms.model.request.EmployeeDataRequest;
 import com.example.spring_craft_ms.model.response.EmployeeDataResponse;
 import com.example.spring_craft_ms.service.EmployeeDataService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value = "/api/v1/employee")
 public class EmployeeDataController {
     private static EmployeeDataService employeeService;
@@ -23,7 +23,7 @@ public class EmployeeDataController {
     // You can define methods here to handle CRUD operations for employee data
 
     // Example method to get all employees
-     @GetMapping("/all")
+     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
      public List<EmployeeDataEntity> getAllEmployees() {
          // This method will return a list of all employees
          // It calls the service layer to fetch the data
@@ -31,7 +31,7 @@ public class EmployeeDataController {
      }
 
     // Example method to get an employee by ID
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<EmployeeDataEntity> getEmployeeById(@PathVariable int id) {
         // This method will return an employee by their ID
         // It calls the service layer to fetch the data
@@ -59,12 +59,12 @@ public class EmployeeDataController {
 //    }
 
     // Example method to delete an employee
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> deleteEmployee(@PathVariable int id) throws DataNotFoundException {
         // This method will delete an employee by their ID
         // It calls the service layer to perform the deletion operation
         employeeService.deleteEmployee(id);
         // Return a response indicating the deletion was successful
-        return ResponseEntity.ok("Employee deleted successfully");
+        return ResponseEntity.noContent().build(); // Return 204 No Content status
     }
 }

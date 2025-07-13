@@ -51,7 +51,6 @@ public class EmployeeDataService {
     // This method converts the EmployeeDataRequest to EmployeeDataEntity
     private EmployeeDataEntity getEmployeeData(EmployeeDataRequest employee) {
         EmployeeDataEntity employeeEntity = new EmployeeDataEntity();
-        employeeEntity.setId(employee.getId());
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
         employeeEntity.setEmail(employee.getEmail());
