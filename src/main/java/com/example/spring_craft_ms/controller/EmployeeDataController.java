@@ -24,7 +24,7 @@ public class EmployeeDataController {
 
     // Example method to get all employees
      @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-     public List<EmployeeDataEntity> getAllEmployees() {
+     public List<EmployeeDataResponse> getAllEmployees() {
          // This method will return a list of all employees
          // It calls the service layer to fetch the data
          return employeeService.getAllEmployees();
@@ -32,10 +32,10 @@ public class EmployeeDataController {
 
     // Example method to get an employee by ID
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<EmployeeDataEntity> getEmployeeById(@PathVariable int id) {
+    public ResponseEntity<EmployeeDataResponse> getEmployeeById(@PathVariable int id) throws DataNotFoundException {
         // This method will return an employee by their ID
         // It calls the service layer to fetch the data
-        EmployeeDataEntity employee = employeeService.getEmployeeById(id);
+        EmployeeDataResponse employee = employeeService.getEmployeeById(id);
         if (employee != null) {
             return ResponseEntity.ok(employee);
         } else {
@@ -46,20 +46,27 @@ public class EmployeeDataController {
 
      //Example method to add a new employee
      @PostMapping("/add")
-     public EmployeeDataResponse addEmployee(@RequestBody EmployeeDataRequest employee) {
-         return employeeService.addEmployee(employee);
+     public ResponseEntity<EmployeeDataResponse> addEmployee(@RequestBody EmployeeDataRequest employee) {
+            // This method will add a new employee
+            // It calls the service layer to perform the addition operation
+            EmployeeDataResponse response = employeeService.addEmployee(employee);
+            // Return a response entity with the created employee data
+            return ResponseEntity.ok(response);
      }
 
      // Example method to update an employee
-//    @PutMapping("/update/{id}")
-//    public EmployeeDataResponse updateEmployee(@PathVariable int id, @RequestBody EmployeeDataRequest employee) {
-//        // This method will update an existing employee's data
-//        // It calls the service layer to perform the update operation
-//        return employeeService.updateEmployee(id, employee);
-//    }
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<EmployeeDataResponse> updateEmployee(@PathVariable int id, @RequestBody EmployeeDataRequest employee) throws DataNotFoundException {
+        // This method will update an existing employee's data
+        // It calls the service layer to perform the update operation
+        EmployeeDataResponse dataResponse = employeeService.updateEmployee(id, employee);
+
+        // Return a response entity with the updated employee data
+        return ResponseEntity.ok(dataResponse);
+    }
 
     // Example method to delete an employee
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> deleteEmployee(@PathVariable int id) throws DataNotFoundException {
         // This method will delete an employee by their ID
         // It calls the service layer to perform the deletion operation
