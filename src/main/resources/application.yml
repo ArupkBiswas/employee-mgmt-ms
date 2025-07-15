@@ -19,6 +19,11 @@ spring:
     platform: postgres
     initialization-mode: never
 
+  liquibase:
+    enabled: true
+    default-schema: employee
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
 
 
   kafka:
