@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.example.spring-craft-ms' is invalid and this project uses 'com.example.spring_craft_ms' instead.
+* The original package name 'com.example.spring-craft-ms' is invalid and this project uses 'com.example.employee_mgmt_ms' instead.
 
 # Getting Started
 

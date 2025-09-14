@@ -6,7 +6,7 @@ spring:
     allow-bean-definition-overriding: true
 
   application:
-    name: spring-craft-ms
+    name: employee_mgmt_ms
   jpa:
     show-sql: true
     hibernate:
