@@ -1,50 +1,60 @@
+# ----------------------------------
 # Gradle
+# ----------------------------------
 .gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar
+out/
 
+# Keep Gradle Wrapper
+!gradlew
+!gradlew.bat
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# ----------------------------------
 # Java
+# ----------------------------------
 *.class
-*.jar
 *.war
 *.ear
 
+# Exclude other JARs, but not wrapper
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# ----------------------------------
 # IDEs
+# ----------------------------------
 /.idea/
 *.iml
 *.ipr
 *.iws
-*.log
-*.swp
-*.swo
-*.DS_Store
-
-# MacOS
-.DS_Store
-
-# Logs
-*.log
-
-# Others
-out/
+.vscode/
 
 # Eclipse
 *.classpath
 *.project
 *.settings/
 
-# VS Code
-.vscode/
-
-# Test output
-/test-output/
-
-# Temporary files
+# ----------------------------------
+# OS / Logs / Temp
+# ----------------------------------
+.DS_Store
+Thumbs.db
+*.log
+*.swp
+*.swo
 *.tmp
 *.bak
 *.orig
 *.save
 
-# Generated files
-**/generated/
+# ----------------------------------
+# Test output
+# ----------------------------------
+/test-output/
 
+# ----------------------------------
+# Generated files
+# ----------------------------------
+**/generated/
