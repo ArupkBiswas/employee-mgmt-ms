@@ -6,6 +6,7 @@ import com.example.employee_mgmt_ms.model.request.EmployeeDataRequest;
 import com.example.employee_mgmt_ms.model.response.EmployeeDataResponse;
 import com.example.employee_mgmt_ms.repository.dao.EmployeeDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
@@ -14,11 +15,17 @@ import java.util.List;
 @Service
 public class EmployeeDataService {
 
-    @Autowired
-    private EmployeeDataRepository employeeDataRepository;
+    private final EmployeeDataRepository employeeDataRepository;
     // This service will handle business logic related to employee data
     // For example, methods to create, update, delete, and retrieve employee data
     // You can inject the EmployeeDataRepository here to interact with the database
+
+    public EmployeeDataService(EmployeeDataRepository employeeDataRepository) {
+        this.employeeDataRepository = employeeDataRepository;
+    }
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
      //Example of a method to get all employees:
      public List<EmployeeDataResponse> getAllEmployees() {
@@ -121,7 +128,7 @@ public class EmployeeDataService {
         employeeEntity.setDepartmentId(employee.getDepartmentId());
         employeeEntity.setEnabled(employee.isEnabled());
         employeeEntity.setUsername(employee.getUsername());
-        employeeEntity.setPassword(employee.getPassword());
+        employeeEntity.setPassword(bCryptPasswordEncoder.encode(employee.getPassword()));
         return employeeEntity;
     }
 

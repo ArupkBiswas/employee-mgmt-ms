@@ -43,4 +43,6 @@ public class EmployeeDataEntity {
     private Integer departmentId;
     @Column(name = "enabled")
     private boolean enabled;
+    @Column(name = "role")
+    private String role;
 }

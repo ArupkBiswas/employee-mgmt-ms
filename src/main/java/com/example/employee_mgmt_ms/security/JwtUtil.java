@@ -9,6 +9,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Utility class to generate/validate JWT tokens.
@@ -23,13 +25,21 @@ public class JwtUtil {
     private Long jwtExpirationInMs;
 
     // Methods for generating and validating JWT tokens would be implemented here
-    public String generateToken(String username) {
+    public String generateToken(String username, Long userId, String role) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", role);
+        claims.put("userId", userId);
+        return buildToken(claims, username);
+    }
+
+    private String buildToken(Map<String , Object> claims, String username) {
         // Implementation for generating JWT token
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
 
         // Build the token
         return Jwts.builder()
+                .setClaims(claims)                                  // Set custom claims
                 .setSubject(username)                               // Set the subject as the username
                 .setIssuedAt(now)                                   // Set the issued at claim
                 .setExpiration(expiryDate)                          // Set the expiration claim
@@ -42,6 +52,13 @@ public class JwtUtil {
      */
     public String getUsernameFromToken(String token) {
        return parseClaims(token).getSubject();
+    }
+
+    /**
+     * Extract custom claims (for example, userId, role)
+     */
+    public Object getClaim(String token, String key) {
+        return parseClaims(token).get(key);
     }
 
     /**
