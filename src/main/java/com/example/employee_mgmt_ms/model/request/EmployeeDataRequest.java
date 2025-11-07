@@ -40,4 +40,10 @@ public class EmployeeDataRequest {
     @JsonProperty(value = "departmentId")
     private Integer departmentId;
     // Additional fields can be added as needed
+    @JsonProperty(value = "username")
+    private String username;
+    @JsonProperty(value = "password")
+    private String password;
+    @JsonProperty(value = "enabled")
+    private boolean enabled;
 }

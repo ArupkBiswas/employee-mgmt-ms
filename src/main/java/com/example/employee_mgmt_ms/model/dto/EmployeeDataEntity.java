@@ -21,6 +21,10 @@ public class EmployeeDataEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "user_name", unique = true, nullable = false)
+    private String username;
+    @Column(name = "password", nullable = false)
+    private String password;
     @Column(name = "email")
     private String email;
     @Column(name = "phone_number")
@@ -37,4 +41,6 @@ public class EmployeeDataEntity {
     private Integer managerId;
     @Column(name = "department_id")
     private Integer departmentId;
+    @Column(name = "enabled")
+    private boolean enabled;
 }
