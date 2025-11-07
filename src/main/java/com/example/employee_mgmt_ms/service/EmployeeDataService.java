@@ -119,6 +119,9 @@ public class EmployeeDataService {
         employeeEntity.setCommissionPct(employee.getCommissionPct());
         employeeEntity.setManagerId(employee.getManagerId());
         employeeEntity.setDepartmentId(employee.getDepartmentId());
+        employeeEntity.setEnabled(employee.isEnabled());
+        employeeEntity.setUsername(employee.getUsername());
+        employeeEntity.setPassword(employee.getPassword());
         return employeeEntity;
     }
 

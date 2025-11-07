@@ -24,6 +24,11 @@ spring:
     default-schema: employee
     change-log: classpath:db/changelog/db.changelog-master.xml
 
+  security:
+    user:
+      name: ""      # leave empty if you use your own user store
+      password: ""  # leave empty if you use your own user store
+
 
 
   kafka:
@@ -47,3 +52,7 @@ logging:
       springframework:
         kafka: DEBUG
 
+# src/main/resources/application.yml
+jwt:
+  secret: change_this_to_a_secure_secret
+  expiration: 3600000
