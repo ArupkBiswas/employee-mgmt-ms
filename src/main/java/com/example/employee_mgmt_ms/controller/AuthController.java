@@ -3,6 +3,7 @@ package com.example.employee_mgmt_ms.controller;
 import com.example.employee_mgmt_ms.model.securityDto.JwtResponse;
 import com.example.employee_mgmt_ms.model.securityDto.LoginRequest;
 import com.example.employee_mgmt_ms.security.JwtUtil;
+import com.example.employee_mgmt_ms.service.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,23 +16,18 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
+    private final AuthService authService;
 
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
-        this.authenticationManager = authenticationManager;
-        this.jwtUtil = jwtUtil;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@Validated @RequestBody LoginRequest loginRequest) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
-            );
 
-            String token = jwtUtil.generateToken(loginRequest.getUsername());
-            return ResponseEntity.ok(new JwtResponse(token));
+    @PostMapping("/login")
+    public ResponseEntity<Object> login(@Validated @RequestBody LoginRequest loginRequest) {
+        try {
+            JwtResponse response = authService.authenticateUser(loginRequest);
+            return ResponseEntity.ok(response);
         } catch (AuthenticationException ex) {
             return ResponseEntity.status(401).body("Invalid username or password");
         }
