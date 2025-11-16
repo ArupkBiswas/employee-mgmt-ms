@@ -3,9 +3,11 @@ package com.example.employee_mgmt_ms.controller;
 import com.example.employee_mgmt_ms.exception.base.DataNotFoundException;
 import com.example.employee_mgmt_ms.model.request.EmployeeDataRequest;
 import com.example.employee_mgmt_ms.model.response.EmployeeDataResponse;
+import com.example.employee_mgmt_ms.security.CurrentUser;
 import com.example.employee_mgmt_ms.service.EmployeeDataService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authorization.method.AuthorizeReturnObject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +25,7 @@ public class EmployeeDataController {
 
     // Example method to get all employees
      @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-     public List<EmployeeDataResponse> getAllEmployees() {
+     public List<EmployeeDataResponse> getAllEmployees(@CurrentUser String currentUser) {
          // This method will return a list of all employees
          // It calls the service layer to fetch the data
          return employeeService.getAllEmployees();

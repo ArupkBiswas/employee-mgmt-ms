@@ -29,6 +29,14 @@ spring:
       name: ""      # leave empty if you use your own user store
       password: ""  # leave empty if you use your own user store
 
+  cloud:
+    vault:
+      uri: http://localhost:8200
+      token: root
+      kv:
+        enabled: true
+        backend: my-secret
+        default-context: jwt
 
 
   kafka:
@@ -54,5 +62,5 @@ logging:
 
 # src/main/resources/application.yml
 jwt:
-  secret: change_this_to_a_secure_secret
+  secret: 2bbff1a3d3bfd3ec7a293af3ac99e82bea2336c8d9a1072c427dfad943120a1ce352713f9f513355c7fcba4c660a79fea514c73fe251ff878c2f3a047a1a757e
   expiration: 3600000

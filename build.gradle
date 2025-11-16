@@ -41,9 +41,13 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-stream-binder-kafka-streams'
 	implementation 'org.springframework.kafka:spring-kafka'
 	implementation 'org.liquibase:liquibase-core'
-	implementation 'io.jsonwebtoken:jjwt:0.9.1' // simple single artifact
+	// Use JJWT 0.11.5 modular artifacts
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.security:spring-security-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -59,6 +63,7 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+
 	}
 }
 
