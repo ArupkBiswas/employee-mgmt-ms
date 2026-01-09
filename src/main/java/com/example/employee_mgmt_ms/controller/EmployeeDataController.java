@@ -25,7 +25,7 @@ public class EmployeeDataController {
 
     // Example method to get all employees
      @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-     public List<EmployeeDataResponse> getAllEmployees(@CurrentUser String currentUser) {
+     public List<EmployeeDataResponse> getAllEmployees() {  //@CurrentUser String currentUser
          // This method will return a list of all employees
          // It calls the service layer to fetch the data
          return employeeService.getAllEmployees();

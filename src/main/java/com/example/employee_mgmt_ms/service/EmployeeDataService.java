@@ -115,6 +115,9 @@ public class EmployeeDataService {
 
     // This method converts the EmployeeDataRequest to EmployeeDataEntity
     private EmployeeDataEntity setEmployeeData(EmployeeDataRequest employee) {
+
+         String username = employee.getUsername() != null && !employee.getUsername().isEmpty() ? employee.getUsername() : employee.getEmail();
+
         EmployeeDataEntity employeeEntity = new EmployeeDataEntity();
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setLastName(employee.getLastName());
@@ -127,8 +130,9 @@ public class EmployeeDataService {
         employeeEntity.setManagerId(employee.getManagerId());
         employeeEntity.setDepartmentId(employee.getDepartmentId());
         employeeEntity.setEnabled(employee.isEnabled());
-        employeeEntity.setUsername(employee.getUsername());
+        employeeEntity.setUsername(username);
         employeeEntity.setPassword(bCryptPasswordEncoder.encode(employee.getPassword()));
+
         return employeeEntity;
     }
 
