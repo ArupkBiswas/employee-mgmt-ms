@@ -1,6 +1,7 @@
 package com.example.employee_mgmt_ms.model.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +21,7 @@ public class EmployeeDataRequest {
     @NotNull
     private Integer id;
     @JsonProperty(value = "firstName")
+    @NotBlank
     private String firstName;
     @JsonProperty(value = "lastName")
     private String lastName;

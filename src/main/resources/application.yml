@@ -1,5 +1,5 @@
 server:
-  port: 8443
+  port: 8081
 
 spring:
   main:
@@ -64,3 +64,15 @@ logging:
 jwt:
   secret: 2bbff1a3d3bfd3ec7a293af3ac99e82bea2336c8d9a1072c427dfad943120a1ce352713f9f513355c7fcba4c660a79fea514c73fe251ff878c2f3a047a1a757e
   expiration: 3600000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, prometheus, metrics
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
