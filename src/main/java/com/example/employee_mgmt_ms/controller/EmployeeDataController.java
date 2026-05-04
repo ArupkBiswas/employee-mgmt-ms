@@ -5,6 +5,7 @@ import com.example.employee_mgmt_ms.model.request.EmployeeDataRequest;
 import com.example.employee_mgmt_ms.model.response.EmployeeDataResponse;
 import com.example.employee_mgmt_ms.security.CurrentUser;
 import com.example.employee_mgmt_ms.service.EmployeeDataService;
+import jakarta.validation.Valid;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authorization.method.AuthorizeReturnObject;
@@ -17,7 +18,7 @@ import java.util.List;
 public class EmployeeDataController {
     private static EmployeeDataService employeeService;
     // Autowiring the EmployeeDataService to handle business logic
-    public EmployeeDataController(EmployeeDataService employeeService) {
+    public EmployeeDataController(@Valid EmployeeDataService employeeService) {
         EmployeeDataController.employeeService = employeeService;
     }
     // This controller will handle employee-related requests
