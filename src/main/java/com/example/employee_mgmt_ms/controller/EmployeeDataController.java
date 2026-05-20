@@ -48,7 +48,7 @@ public class EmployeeDataController {
 
      //Example method to add a new employee
      @PostMapping("/add")
-     public ResponseEntity<EmployeeDataResponse> addEmployee(@RequestBody EmployeeDataRequest employee) {
+     public ResponseEntity<EmployeeDataResponse> addEmployee(@Valid @RequestBody EmployeeDataRequest employee) {
             // This method will add a new employee
             // It calls the service layer to perform the addition operation
             EmployeeDataResponse response = employeeService.addEmployee(employee);
@@ -58,7 +58,7 @@ public class EmployeeDataController {
 
      // Example method to update an employee
     @PatchMapping("/update/{id}")
-    public ResponseEntity<EmployeeDataResponse> updateEmployee(@PathVariable int id, @RequestBody EmployeeDataRequest employee) throws DataNotFoundException {
+    public ResponseEntity<EmployeeDataResponse> updateEmployee(@PathVariable int id,@Valid @RequestBody EmployeeDataRequest employee) throws DataNotFoundException {
         // This method will update an existing employee's data
         // It calls the service layer to perform the update operation
         EmployeeDataResponse dataResponse = employeeService.updateEmployee(id, employee);
